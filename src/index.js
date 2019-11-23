@@ -2,7 +2,7 @@ const express = require ('express')
 const bodyParser = require("body-parser");
 const chorder = require ('./chorder.js');
 const path = require ('path');
-const mongoose = require ('./mongoose.js');
+//const mongoose = require ('./mongoose.js');
 
 
 /* const mongoose = require('mongoose');
@@ -55,7 +55,10 @@ app.post('/getnotes', (req,res)=>{
     return res.status(200).set({'Access-Control-Allow-Headers': 'Content-type, text/html'}).send(chord);
 })
 
-app.get('/profile/image', function(req, res){
+
+//TO DO 
+
+/* app.get('/profile/image', function(req, res){
 
     // const img = fs.readFileSync('src/view/upload/image.png');
 
@@ -63,7 +66,7 @@ app.get('/profile/image', function(req, res){
     // console.log('i: ', img);
     // res.writeHead(200, {'Content-Type': 'image/png'});
     // res.end(img, 'binary');
-})
+}) */
 
 
 

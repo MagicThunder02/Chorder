@@ -238,10 +238,6 @@ p {
   font-size: 1.2rem;
 }
 
-.footer {
-  background-color: rgba(47, 23, 15, 0.9);
-}
-
 .text-primary {
   color: #f7fff7ee !important;
 }
@@ -261,7 +257,7 @@ color: #FFFFFF;
 
 .btn-primary {
   width: 130%;
-  height: 110%;
+  height: 100%;
   /* colore bottoni */
   background-color: #9cacbbbb;
   border-color: #738290;
@@ -271,13 +267,13 @@ color: #FFFFFF;
 
 .btn-primary2 {
   width: 15%;
-  height: 110%;
   /* colore bottoni */
   background-color: #9cacbbbb;
   border-color: #738290;
   font-size: 1.3em;
   font-family: comic;
-  color: #000000;
+  color: #ffffff;
+  height: auto;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {

@@ -1,85 +1,185 @@
-
-class Guitar {
-    constructor(MiString, LaString, ReString, SolString, SiString, MiLastString) {
-        this.guitarStrings = [MiString, LaString, ReString, SolString, SiString, MiLastString];
+class Note {
+    constructor(name, string, fret) {
+        this.name = name;
+        this.string = string;
+        this.fret = fret;
     }
 }
 
-stringArray = ['Do', 'Reb', 'Re', 'Mib', 'Mi', 'Fa', 'Solb', 'Sol', 'Lab', 'La', 'Sib', 'Si'];
+class Guitar {
+    constructor(MiString, LaString, ReString, SolString, SiString, MiLastString, fretnumber) {
 
-function createString(name, fretnumber, stringArray) {
+        this.myStrings = [];
+        this.myStrings[0] = MiString;
+        this.myStrings[1] = LaString;
+        this.myStrings[2] = ReString;
+        this.myStrings[3] = SolString;
+        this.myStrings[4] = SiString;
+        this.myStrings[5] = MiLastString;
+        this.fretnumber = fretnumber;
+    }
+}
+
+class Bass {
+    constructor(MiString, LaString, ReString, SolString, fretnumber) {
+        this.myStrings = [];
+        this.myStrings[0] = MiString;
+        this.myStrings[1] = LaString;
+        this.myStrings[2] = ReString;
+        this.myStrings[3] = SolString;
+        this.fretnumber = fretnumber;
+    }
+}
+
+notesArray = ['Do', 'Reb', 'Re', 'Mib', 'Mi', 'Fa', 'Solb', 'Sol', 'Lab', 'La', 'Sib', 'Si'];
+
+function createString(name, number, fretnumber) {
     let instrument_string = [];
-    let start = stringArray.indexOf(name);
-    
+    let start = notesArray.indexOf(name);
 
-    for (i = 0; i < fretnumber; i++) {
-        //riempio l'array di output con ogni nota
-        instrument_string.push(stringArray[(start + i) % 12]);
+    for (let i = 0; i < fretnumber; i++) {
+
+        let namepar = notesArray[(start + i) % 12];
+        let stringpar = number;
+        let fretpar = i;
+        let note = new Note(namepar, stringpar, fretpar);
+
+        instrument_string.push(note);
     }
 
-    // console.log(instrument_string);
     return instrument_string;
 }
 
 function createGuitar(frets) {
-    let MiString     = createString('Mi', frets, stringArray);
-    let LaString     = createString('La', frets, stringArray);
-    let ReString     = createString('Re', frets, stringArray);
-    let SolString    = createString('Sol', frets, stringArray);
-    let SiString     = createString('Si', frets, stringArray);
-    let MiLastString = createString('Mi', frets, stringArray);
+    let MiString = createString('Mi', 0, frets);
+    let LaString = createString('La', 1, frets);
+    let ReString = createString('Re', 2, frets);
+    let SolString = createString('Sol', 3, frets);
+    let SiString = createString('Si', 4, frets);
+    let MiLastString = createString('Mi', 5, frets);
 
-    let guitar = new Guitar(MiString, LaString, ReString, SolString, SiString, MiLastString);
+    let guitar = new Guitar(MiString, LaString, ReString, SolString, SiString, MiLastString, frets);
 
     return guitar;
 }
 
-/* function createBass(frets) {
-    let MiString     = createString('Mi', frets, stringArray);
-    let LaString     = createString('La', frets, stringArray);
-    let ReString     = createString('Re', frets, stringArray);
-    let SolString    = createString('Sol', frets, stringArray);
+function createBass(frets) {
+    let MiString = createString('Mi', 0, frets);
+    let LaString = createString('La', 1, frets);
+    let ReString = createString('Re', 2, frets);
+    let SolString = createString('Sol', 3, frets);
 
-    let bass = new Guitar(MiString, LaString, ReString, SolString, SiString, MiLastString);
+    let bass = new Bass(MiString, LaString, ReString, SolString, frets);
 
-    return guitar;
-} */
-
-function getAllIndexes(arr, val) {
-    var indexes = [], i = -1;
-    while ((i = arr.indexOf(val, i+1)) != -1){
-        indexes.push(i);
-    }
-    return indexes;
+    return bass;
 }
 
+//creo una finestra di 4 tasti 
+function createWindow(start, instrument) {
+    let window = [];
 
-function findNotes(notes, instrument) {
+    instrument.myStrings.forEach(instrument_string => {
+        let tmp = instrument_string.slice(start, start + 4);
+        window.push(tmp);
+    });
+
+    // console.log('w:', window)
+    return window;
+}
+
+//osservo se nella finestra ci sono le note che mi interessano
+function observeWindow(notes, window) {
     let found = [];
-    
-    guitar.guitarStrings.forEach(oneString => {
-
-        let foundOnString = [];
-
-        notes.forEach(note => {
-            let placeholder =  note + ':';
-            foundOnString.push(placeholder);
-
-            let indexes = getAllIndexes(oneString, note);
-            foundOnString.push(indexes);
-            
+    window.forEach(choppedString => {
+        choppedString.forEach(note => {
+            notes.forEach(givenNote => {
+                if (givenNote.name == note.name) {
+                    found.push(note);
+                }
+            });
         });
-
-        found.push(foundOnString);
-    })
-   
-    
+    });
+    // console.log('w:', found)
     return found;
 }
 
-guitar = createGuitar(20);
-console.log(guitar);
+function preferVoid(instrument, windowsSet) {
+    let returnWindowsSet = [];
+    windowsSet.forEach(window => {
+        //tra una corda a vuoto e un tasto scelgo la corda a vuoto
+        for (let i = 0; i < window.length; i++) {
+            for (let j = 0; j < instrument.myStrings.length; j++) {
+                //se ci sono due note sulla stessa corda 
 
-result = findNotes(['Do', 'Mi', 'Sol'], guitar);
+                if (i != j) {
+                    if (window[i].string == window[j].string) {
+                        //se uno è a vuoto rimuovi l'altro dalla finestra
+                        if (window[i].fret == 0) {
+                            window.splice(j, 1)
+                        }
+                    }
+                }
+            }
+        }
+        returnWindowsSet.push(window)
+    });
+    return returnWindowsSet;
+}
 
-console.log(result);
+
+function selectFundamentalAsLower(notes, windowsSet) {
+    let tmp = [];
+    let result = [];
+
+    windowsSet.forEach(window => {
+        //cerco la corda più bassa
+        window.forEach(element => {
+            tmp.push(element.string);
+        })
+        tmp = tmp.sort();
+        let min = tmp[0];
+
+        window.forEach(note => {
+            //costringo la tonica cioè notes[0] a essere la nota più grave
+            if (note.string == min) {
+                if (note.name == notes[0].name) {
+                    result.push(window)
+                }
+            }
+        });
+    });
+    return result;
+}
+
+//scelgo la miglior configurazione di note
+//ogni regola restituisce una nuova finestra
+function chooseBest(instrument, notes, windowsSet) {
+    let found = [];
+
+    windowsSet = selectFundamentalAsLower(notes, windowsSet);
+    windowsSet = preferVoid(instrument, windowsSet)
+
+    found.push(windowsSet);
+
+    console.log('f:', found)
+    return found;
+}
+
+
+let frets = 15;
+guitar = createGuitar(frets);
+// bass = createBass(frets);
+
+var n = [{ name: 'Do' }, { name: 'Mi' }, { name: 'Sol' }]
+let windowsArray = [];
+
+for (i = 0; i < frets - 4; i++) {
+    let w = createWindow(i, guitar);
+    let observedWindow = observeWindow(n, w);
+    // console.log(observedWindow);
+    windowsArray.push(observedWindow);
+}
+let result = chooseBest(guitar, n, windowsArray);
+
+// console.log(result);
+console.log('out:', JSON.stringify(result, null, ' '));

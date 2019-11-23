@@ -409,15 +409,15 @@ function chordNamer(scale, chord) {
 
     let name = '';
     if (!chord.fundamental) {
-        return 'accordo inesistente: manca la fondamentale';
+        return 'error: missing fundamental';
     }
 
     if (!chord.third) {
-        return 'accordo inesistente: manca la terza';
+        return 'error: missing third';
     }
 
     if (!chord.fifth) {
-        return 'accordo inesistente: manca la quinta';
+        return 'error: missing fifth';
     }
 
     //gestisco la tonica, esempio: 'Do'
@@ -593,8 +593,6 @@ function noteFinder(key, chord) {
         seventh = scale[7 - 1];
     }
 
-
-
     //nona
     if (chord.includes('b9')) {
         switch (scale[2 - 1].alt) {
@@ -640,13 +638,13 @@ function noteFinder(key, chord) {
         }
     }
     if (chord.includes('11')) {
-        eleventh = scale[2 - 1];
+        eleventh = scale[4 - 1];
     }
 
     //tredicesima
     if (chord.includes('b13')) {
         switch (scale[6 - 1].alt) {
-            case -1: eleventh = scale[5 - 1];
+            case -1: thirteenth = scale[5 - 1];
                 thirteenth.alt = 0; break;
             case 0: thirteenth = scale[6 - 1];
                 thirteenth.alt = -1; break;
@@ -670,7 +668,7 @@ function noteFinder(key, chord) {
     printArray.push(fundamental);
     printArray.push( ' ', encode(third), ' ', encode(fifth), ' ', encode(seventh), ' ', encode(nineth), ' ', encode(eleventh), ' ', encode(thirteenth));
 
-    console.log('p: ', printArray);
+    console.log('p: ', printArray, 'k:',nineth ,eleventh);
 
     return printArray
 }
@@ -680,8 +678,4 @@ noteFinder('Do', 'Doaum');
 module.exports.chordFinder = chordFinder;
 module.exports.noteFinder = noteFinder;
 
-// let k = decode('solb');
-// createScale(k);
-
-// chordFinder('do', ['do', 'mi', 'sol#', 'si', 'reb', 'la']);
 

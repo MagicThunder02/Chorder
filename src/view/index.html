@@ -52,10 +52,7 @@
             <a class="nav-link text-uppercase text-expanded" href="notefinder.html">NOTE FINDER</a>
           </li>
           <li class="nav-item px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="products.html">Products</a>
-          </li>
-          <li class="nav-item px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="store.html">Store</a>
+            <a class="nav-link text-uppercase text-expanded" href="instrument.html">INSTRUMENT</a>
           </li>
         </ul>
       </div>
@@ -74,6 +71,7 @@
             <h5>
               <select class="drop btn" name="selectKey">
                 <option value="" disabled selected hidden>Key</option>
+                <option value=""></option>
                 <option value="Do">Do</option>
                 <option value="Reb">Do#/Re&#9837</option>
                 <option value="Re">Re</option>
@@ -92,6 +90,7 @@
           <h5>
             <select class="drop btn" name="selectNote1">
               <option value="" disabled selected hidden>I</option>
+              <option value=""></option>
               <option value="Do">Do</option>
               <option value="Reb">Do#/Re&#9837</option>
               <option value="Re">Re</option>
@@ -107,6 +106,7 @@
             </select>
             <select class="drop btn" name="selectNote2">
               <option value="" disabled selected hidden>II</option>
+              <option value=""></option>
               <option value="Do">Do</option>
               <option value="Reb">Do#/Re&#9837</option>
               <option value="Re">Re</option>
@@ -122,6 +122,7 @@
             </select>
             <select class="drop btn" name="selectNote3">
               <option value="" disabled selected hidden>III</option>
+              <option value=""></option>
               <option value="Do">Do</option>
               <option value="Reb">Do#/Re&#9837</option>
               <option value="Re">Re</option>
@@ -137,6 +138,7 @@
             </select>
             <select class="drop btn" name="selectNote4">
               <option value="" disabled selected hidden>IV</option>
+              <option value=""></option>
               <option value="Do">Do</option>
               <option value="Reb">Do#/Re&#9837</option>
               <option value="Re">Re</option>
@@ -152,6 +154,7 @@
             </select>
             <select class="drop btn" name="selectNote5">
               <option value="" disabled selected hidden>V</option>
+              <option value=""></option>
               <option value="Do">Do</option>
               <option value="Reb">Do#/Re&#9837</option>
               <option value="Re">Re</option>
@@ -167,6 +170,7 @@
             </select>
             <select class="drop btn" name="selectNote6">
               <option value="" disabled selected hidden>VI</option>
+              <option value=""></option>
               <option value="Do">Do</option>
               <option value="Reb">Do#/Re&#9837</option>
               <option value="Re">Re</option>
@@ -182,6 +186,7 @@
             </select>
             <select class="drop btn" name="selectNote7">
               <option value="" disabled selected hidden>VII</option>
+              <option value=""></option>
               <option value="Do">Do</option>
               <option value="Reb">Do#/Re&#9837</option>
               <option value="Re">Re</option>
@@ -201,7 +206,7 @@
               <button class="btn btn-primary" style="font-size:1.3em" type="submit" value="submit">Calculate!</button>
             </div>
             <div class="btn btn-primary2 btn2">
-              <h3>result</h3>
+              <h3></h3>
             </div>
           </div>
         </div>
@@ -215,13 +220,19 @@
         <div class="col-xl-9 mx-auto">
           <div class="cta-inner text-center rounded">
             <h2 class="section-heading mb-4">
-              <span class="section-heading-upper">Our Promise</span>
-              <span class="section-heading-lower">To You</span>
+              <span class="section-heading-upper">Chord Maker</span>
+              <span class="section-heading-lower">How it works</span>
             </h2>
-            <p class="mb-0">When you walk into our shop to start your day, we are dedicated to providing you with
-              friendly service, a welcoming atmosphere, and above all else, excellent products made with the highest
-              quality ingredients. If you are not satisfied, please let us know and we will do whatever we can to make
-              things right!</p>
+            <p class="mb-0">
+              On this page you can find the name of a
+              chord by giving the name of the notes that form it.
+            </p>
+            <p></p>
+            <p class="mb-0"> First: select the key note </p>
+            <p class="mb-0"> Second: select the notes </p>
+            <p class="mb-0"> Third: click calculate</p>
+
+            </p>
           </div>
         </div>
       </div>
@@ -230,7 +241,18 @@
 
   <footer class="footer text-faded text-center py-5">
     <div class="container">
-      <p class="m-0 small">Copyright &copy; Your Website 2019</p>
+      <p class="m-0 small">If you liked this tool, offer me a coffe</p>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_donations" />
+        <input type="hidden" name="business" value="349H6W6B9QSG8" />
+        <input type="hidden" name="currency_code" value="EUR" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit"
+          title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_IT/i/scr/pixel.gif" width="1" height="1" />
+      </form>
+      <p class="m-0 small">Copyright &copy; Chorder 2019</p>
+      <p class="m-0 small">matteo.savina@gmail.com</p>
+      <p class="m-0 small">Italy</p>
     </div>
   </footer>
 
