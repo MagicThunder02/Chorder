@@ -22,6 +22,7 @@
   <!-- Custom styles for this template -->
   <link href="css/business-casual.css" rel="stylesheet">
 
+  <script src="maker.js "></script>
 </head>
 
 <body>
@@ -36,7 +37,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
     <div class="container">
-      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">CHORDER</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
         aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -64,73 +65,49 @@
 
   <section class="page-section clearfix">
     <!-- <form id="noteform" action="/getnotes" method="post"> -->
-    <form id="chordform" method="post">
+    <form id="noteform" method="post">
       <div class="container">
 
         <div class="intro-text left-0 text-center bg-faded p-5 rounded">
           <h2 class="section-heading mb-4">
-            <p>Choose a chord and get the notes!</p>
+
+            <p>Choose a key, some notes and get the chord</p>
+            <h5>
+              <select class="drop btn" name="selectKey">
+                <option value="" disabled selected hidden>Key</option>
+                <option value=""></option>
+              </select>
+            </h5>
           </h2>
           <h5>
-            <select class="drop btn" name="selectKey">
-              <option value="" disabled selected hidden></option>
+            <select class="drop btn" name="selectNote1" id="selectNote1">
+              <option value="" disabled selected hidden>I</option>
               <option value=""></option>
-              <option value="Do">Do</option>
-              <option value="Reb">Do#/Re&#9837</option>
-              <option value="Re">Re</option>
-              <option value="Mib">Re#/Mi&#9837</option>
-              <option value="Mi">Mi</option>
-              <option value="Fa">Fa</option>
-              <option value="Solb">Fa#/Sol&#9837</option>
-              <option value="Sol">Sol</option>
-              <option value="Lab">Sol#/La&#9837</option>
-              <option value="La">La</option>
-              <option value="Sib">La#/Si&#9837</option>
-              <option value="Si">Si</option>
             </select>
-
-            <select class="drop btn" name="selectthirdseventh">
-              <option value="" disabled selected hidden></option>
+            <select class="drop btn" name="selectNote2" id="selectNote2">
+              <option value="" disabled selected hidden>II</option>
               <option value=""></option>
-              <option value="maj">maj</option>
-              <option value="min">min</option>
-              <option value="aum">aum</option>
-              <option value="dim">dim</option>
             </select>
-            <select class="drop btn" name="selectX">
-              <option value="" disabled selected hidden></option>
+            <select class="drop btn" name="selectNote3" id="selectNote3">
+              <option value="" disabled selected hidden>III</option>
               <option value=""></option>
-              <option value="7">7</option>
-              <option value="9">9</option>
-              <option value="11">11</option>
-              <option value="13">13</option>
             </select>
-            <select class="drop btn" name="selectfifth">
-              <option value="" disabled selected hidden></option>
+            <select class="drop btn" name="selectNote4" id="selectNote4">
+              <option value="" disabled selected hidden>IV</option>
               <option value=""></option>
-              <option value="b5">&#9837 5</option>
-              <option value="#3"># 5</option>
             </select>
-            <select class="drop btn" name="selectnineth">
-              <option value="" disabled selected hidden></option>
-              <option value="b9">&#9837 9</option>
-              <option value="#9"># 9</option>
+            <select class="drop btn" name="selectNote5" id="selectNote5">
+              <option value="" disabled selected hidden>V</option>
+              <option value=""></option>
             </select>
-            <select class="drop btn" name="selecteleventh">
-              <option value="" disabled selected hidden></option>
-              <option value="b11">&#9837 11</option>
-              <option value="#11"># 11</option>
+            <select class="drop btn" name="selectNote6" id="selectNote6">
+              <option value="" disabled selected hidden>VI</option>
+              <option value=""></option>
             </select>
-            <select class="drop btn" name="selectthirteenth">
-              <option value="" disabled selected hidden></option>
-              <option value="b13">&#9837 13</option>
-              <option value="#13"># 13</option>
+            <select class="drop btn" name="selectNote7" id="selectNote7">
+              <option value="" disabled selected hidden>VII</option>
+              <option value=""></option>
             </select>
-            <!-- <select class="drop btn" name="selectseventh">
-              <option value="" disabled selected hidden>3</option>
-              <option value="maj">maj</option>
-            </select> -->
-
           </h5>
           <div class="resulter">
             <div>
@@ -151,16 +128,19 @@
         <div class="col-xl-9 mx-auto">
           <div class="cta-inner text-center rounded">
             <h2 class="section-heading mb-4">
-              <span class="section-heading-upper">Note Finder</span>
+              <span class="section-heading-upper">Chord Maker</span>
               <span class="section-heading-lower">How it works</span>
             </h2>
             <p class="mb-0">
-              On this page you can find the notes that make a chord by giving its name.
+              On this page you can find the name of a
+              chord by giving the name of the notes that form it.
             </p>
             <p></p>
-            <p class="mb-0"> First: select the fundamental of the chord</p>
-            <p class="mb-0"> Second: build his name selecting his pieces </p>
+            <p class="mb-0"> First: select the key note </p>
+            <p class="mb-0"> Second: select the notes </p>
             <p class="mb-0"> Third: click calculate</p>
+
+            </p>
           </div>
         </div>
       </div>
@@ -170,14 +150,15 @@
   <footer class="footer text-faded text-center py-5">
     <div class="container">
       <p class="m-0 small">If you liked this tool, offer me a coffe</p>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_donations" />
-        <input type="hidden" name="business" value="349H6W6B9QSG8" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit"
-          title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-        <img alt="" border="0" src="https://www.paypal.com/en_IT/i/scr/pixel.gif" width="1" height="1" />
-      </form>
+      <!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_donations" />
+                <input type="hidden" name="business" value="349H6W6B9QSG8" />
+                <input type="hidden" name="currency_code" value="EUR" />
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0"
+                    name="submit" title="PayPal - The safer, easier way to pay online!"
+                    alt="Donate with PayPal button" />
+                <img alt="" border="0" src="https://www.paypal.com/en_IT/i/scr/pixel.gif" width="1" height="1" />
+            </form> -->
       <p class="m-0 small">Copyright &copy; Chorder 2019</p>
       <p class="m-0 small">matteo.savina@gmail.com</p>
       <p class="m-0 small">Italy</p>
@@ -187,20 +168,22 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+
   <script>
     $(document).ready(function () {
-      $("form#chordform").on('submit', function (e) {
+      $("form#noteform").on('submit', function (e) {
         e.preventDefault();
         $.ajax({
           type: 'POST',
-          url: '/getchord',
-          data: $('#chordform').serialize(),
+          url: '/getnotes',
+          data: $('#noteform').serialize(),
           success: function (msg) {
             $('h3').html(msg);
           }
         });
       });
     });
+
   </script>
 
 </body>

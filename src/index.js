@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //gestione routes
 app.get('/', (req,res)=>{
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(__dirname + "/view/maker.html");
 })
 
 app.post('/getchord', (req,res)=>{
@@ -54,20 +54,6 @@ app.post('/getnotes', (req,res)=>{
     const chord = chorder.chordFinder(req.body.selectKey, notes);
     return res.status(200).set({'Access-Control-Allow-Headers': 'Content-type, text/html'}).send(chord);
 })
-
-
-//TO DO 
-
-/* app.get('/profile/image', function(req, res){
-
-    // const img = fs.readFileSync('src/view/upload/image.png');
-
-    let img = mongoose.findtab('Do', res); 
-    // console.log('i: ', img);
-    // res.writeHead(200, {'Content-Type': 'image/png'});
-    // res.end(img, 'binary');
-}) */
-
 
 
 app.listen(PORT, ()=>{

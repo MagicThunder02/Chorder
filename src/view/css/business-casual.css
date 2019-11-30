@@ -169,6 +169,16 @@ p {
   background-color: rgba(247, 255, 247, 0.85);
 }
 
+.cta .cta-inner2 {
+  /* colore scatola interna al fondo */
+  position: relative;
+  padding: 3rem;
+  margin: 0.5rem;
+  background-color: rgba(247, 255, 247, 0.85);
+  border: 0.5em solid rgba(247, 255, 247, 0.85);
+
+} 
+
 .cta .cta-inner:before {
   border-radius: 0.5rem;
   content: '';
@@ -208,29 +218,6 @@ p {
     z-index: 1;
     margin-top: -3rem;
     max-width: 50vw;
-  }
-}
-
-.list-hours {
-  font-size: 0.9rem;
-}
-
-.list-hours .list-hours-item {
-  border-bottom: 1px solid rgba(230, 167, 86, 0.5);
-  padding-bottom: .25rem;
-  margin-bottom: 1rem;
-  font-style: italic;
-}
-
-.list-hours .list-hours-item.today {
-  font-weight: bold;
-  color: #e6a756;
-}
-
-@media (min-width: 992px) {
-  .list-hours {
-    width: 50%;
-    font-size: 1.1rem;
   }
 }
 
@@ -318,3 +305,16 @@ color: #FFFFFF;
   border-color: #738290;
 }
 
+.centerimg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.borderer {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+  border: 0.5em solid rgba(247, 255, 247, 0.85);
+}
