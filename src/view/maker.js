@@ -1,6 +1,9 @@
 window.onload = function () {
 
     let notation = readCookie('notation');
+    if (notation  != 'american') {
+        notation = 'european';
+    } 
     console.log(notation);
 
     switch (notation) {
@@ -45,7 +48,6 @@ function populateSelect(id, notation) {
 
     console.log(id);
     let select = document.getElementById(id);
-    console.log(select);
 
     let notes = [
         { note: 'Do',   european: 'Do',             american: 'C' },
@@ -56,7 +58,7 @@ function populateSelect(id, notation) {
         { note: 'Fa',   european: 'Fa',             american: 'F' },
         { note: 'Solb', european: 'Fa#/Sol&#9837',  american: 'F#/G&#9837' },
         { note: 'Sol',  european: 'Sol',            american: 'G' },
-        { note: 'Lab',  european: 'Sol/La&#9837',   american: 'G#/A&#9837' },
+        { note: 'Lab',  european: 'Sol#/La&#9837',   american: 'G#/A&#9837' },
         { note: 'La',   european: 'La',             american: 'A' },
         { note: 'Sib',  european: 'La#/Si&#9837',   american: 'A#/B&#9837' },
         { note: 'Si',   european: 'Si',             american: 'B' }]
@@ -84,6 +86,7 @@ function populateSelect(id, notation) {
 }
 
 function populate(notation) {
+    populateSelect("selectKey", notation)
     populateSelect("selectNote1", notation);
     populateSelect("selectNote2", notation);
     populateSelect("selectNote3", notation);
@@ -91,5 +94,45 @@ function populate(notation) {
     populateSelect("selectNote5", notation);
     populateSelect("selectNote6", notation);
     populateSelect("selectNote7", notation);
+}
 
+function translateResult(chordname) {
+    //traduco il nome dell'accordo da europeo a americano
+    let notation = readCookie('notation');
+
+    switch (notation) {
+        case 'american':
+            if (chordname.includes('Do')) {
+                chordname = chordname.replace('Do', 'C')
+            }
+            if (chordname.includes('Re')) {
+                chordname = chordname.replace('Re', 'D')
+            }
+            if (chordname.includes('Mi')) {
+                chordname = chordname.replace('Mi', 'E')
+            }
+            if (chordname.includes('Fa')) {
+                chordname = chordname.replace('Fa', 'F')
+            }
+            if (chordname.includes('Sol')) {
+                chordname = chordname.replace('Sol', 'G')
+            }
+            if (chordname.includes('La')) {
+                chordname = chordname.replace('La', 'A')
+            }
+            if (chordname.includes('Si')) {
+                chordname = chordname.replace('Si', 'B')
+            }
+           
+            break;
+
+        case 'european':
+            return chordname
+            break;
+
+        default:
+            return chordname;
+            break;
+    } 
+    return chordname;
 }

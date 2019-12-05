@@ -1,3 +1,5 @@
+var flag = false;
+
 class Note {
     //classe della nota
     constructor(nat, alt) {
@@ -324,6 +326,8 @@ function adjustScale(scale, fifth) {
 }
 
 function gradeFinder(scale, note) {
+    let grade;
+    console.log('gf: ', scale, note);
     //cerco la nota come è
     for (i = 0; i < scale.length - 1; i++) {
         if ((scale[i].nat == note.nat) && (scale[i].alt == note.alt)) {
@@ -331,6 +335,21 @@ function gradeFinder(scale, note) {
             return grade;
         }
     }
+
+    //se la nota è bemolle
+    if (note.alt == -1) {
+        let bem = note;
+        bem.nat = bem.nat - 1;
+        bem.alt = 1;
+        //cerco la nota come è
+        for (i = 0; i < scale.length - 1; i++) {
+            if ((scale[i].nat == note.nat) && (scale[i].alt == note.alt)) {
+                let grade = new Grade(i + 1, 0);
+                return grade;
+            }
+        }
+    }
+
     //cerchiamo il match solo naturale
     for (i = 0; i < scale.length - 1; i++) {
         if (scale[i].nat == note.nat) {
@@ -338,7 +357,9 @@ function gradeFinder(scale, note) {
             return grade;
         }
     }
+    return null
 }
+
 
 function createScale(key) {
     //creo prima la scala senza alterazioni
@@ -402,7 +423,7 @@ function find5(chord) {
         return '';
     }
 
-    return '-error5-'
+    return ''//'-error5-'
 }
 
 function chordNamer(scale, chord) {
@@ -412,16 +433,19 @@ function chordNamer(scale, chord) {
         return 'error: missing fundamental';
     }
 
-    if (!chord.third) {
-        return 'error: missing third';
-    }
-
-    if (!chord.fifth) {
-        return 'error: missing fifth';
-    }
+    /*     if (!chord.third) {
+            return 'error: missing third';
+        }
+    
+        if (!chord.fifth) {
+            return 'error: missing fifth';
+        } */
 
     //gestisco la tonica, esempio: 'Do'
     name = encode(scale[chord.fundamental.num - 1]);
+
+    //gestisco gli accordi sospesi
+
 
     //gestisco la quinta
     name += find5(chord);
@@ -588,7 +612,7 @@ function noteFinder(key, chord) {
                 seventh.alt = 0; break;
         }
     }
-    
+
     else {
         seventh = scale[7 - 1];
     }
@@ -666,9 +690,9 @@ function noteFinder(key, chord) {
     }
 
     printArray.push(fundamental);
-    printArray.push( ' ', encode(third), ' ', encode(fifth), ' ', encode(seventh), ' ', encode(nineth), ' ', encode(eleventh), ' ', encode(thirteenth));
+    printArray.push(' ', encode(third), ' ', encode(fifth), ' ', encode(seventh), ' ', encode(nineth), ' ', encode(eleventh), ' ', encode(thirteenth));
 
-    console.log('p: ', printArray, 'k:',nineth ,eleventh);
+    console.log('p: ', printArray, 'k:', nineth, eleventh);
 
     return printArray
 }

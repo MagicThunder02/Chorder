@@ -1,6 +1,7 @@
 window.onload = function () {
-
+  
     let notation = readCookie('notation');
+
     console.log(notation);
 
     switch (notation) {

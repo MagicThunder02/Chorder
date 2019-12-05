@@ -73,7 +73,7 @@
 
             <p>Choose a key, some notes and get the chord</p>
             <h5>
-              <select class="drop btn" name="selectKey">
+              <select class="drop btn" name="selectKey" id="selectKey">
                 <option value="" disabled selected hidden>Key</option>
                 <option value=""></option>
               </select>
@@ -178,6 +178,10 @@
           url: '/getnotes',
           data: $('#noteform').serialize(),
           success: function (msg) {
+            //traduco da europeo a americano se necessario
+            console.log(msg)
+            msg = translateResult(msg);
+            console.log(msg)
             $('h3').html(msg);
           }
         });
